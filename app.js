@@ -61,7 +61,7 @@ var osc = require("osc");
 
 var udp_sc = new osc.UDPPort({
     localAddress: "0.0.0.0",
-    localPort: 52000,
+    localPort: 54321,
     metadata: true
 });
 
