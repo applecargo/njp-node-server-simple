@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- dependencies -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/Tone.min.js"></script>
+    <script type="text/javascript" src="js/socket.io.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.7.0/css/tachyons.min.css"/>
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/loading-animation.css"/>
+    <!-- js code -->
+    <script type="text/javascript" src="js/ui.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </head>
+
+  <body class="bg-light-blue min-h-100 h-auto">
+
+    <!-- top sticky overlay-ed flasher -->
+    <div class="flasher fixed top-0 left-0 vh-100 w-100 bg-white z-max" style="display:none;pointer-events:none"></div>
+
+    <!-- full page layout -->
+    <div class="vh-100 w-100 absolute top-0 left-0 bg-dark-green">
+      <div class="cf w-100 top-0">
+	
+	<!-- top sticky system status header -->
+	<!-- <div class="dt w-100 top-0 bg-hot-pink pt4">
+	     <div class="w-40 dtc v-mid bg-hot-pink">
+	     <div class="fl w-30">
+	     <input type="checkbox" class="ui-tgl input-reset dib br-100 w2 h2 bg-hot-pink ba bw2 b--gold" id="netstat" value="0"/>
+	     </div>
+	     </div>
+	     </div> -->
+	<div class="absolute top-0 right-0 pt2 pr2">
+	  <input type="checkbox" class="ui-tgl input-reset dib br-100 w2 h2 ba bw2 b--near-black" style="pointer-events:none" id="netstat" value="0"/>
+	</div>
+
+	<!-- welcome page -->
+	<div class="ui-page fl w-100 bg-hot-pink" id="page-welcome">
+	  <div class="fl w-100 pt3">
+	    <div class="tc">
+	      <div class="dib w-40">
+		<img src="imgs/litmusphone.png" />
+	      </div>
+	    </div>
+	  </div>
+	  <div class="fl w-100">
+	    <div class="fl w-100 tc pv3 lh-copy f4 fw7 black">
+	      광장 연습<br>You should speak out LOUD!
+	    </div>
+	  </div>
+	  <div class="fl w-100 bg-lime pv2 go-loading">
+	    <div class="tc">
+	      <div class="dib w-30">
+		<svg class="fill-navy" width="100%" height="100%" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
+		  <path d="M1540 862q0-28-18-46l-91-90q-19-19-45-19t-45 19l-408 407-226-226q-19-19-45-19t-45 19l-91 90q-18 18-18 46 0 27 18 45l362 362q19 19 45 19 27 0 46-19l543-543q18-18 18-45zm252 162q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/>
+		</svg>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- loading -->
+	<!-- <div class="ui-page fl w-100 bg-yellow" id="page-loading"> -->
+	<div class="ui-page dt vh-100 w-100 absolute top-0 left-0 animationStripes" id="page-loading" style="display:none">
+	  <div class="dtc v-mid tc white">
+	    <h1 class="f3 f1-ns">
+	      Loading..........!?
+	    </h1>
+	  </div>
+	</div>
+	
+	<!-- sound output check page -->
+	<div class="ui-page fl w-100 bg-near-black" id="page-checklist" style="display:none">
+	  <div class="fl w-100 center ph4">
+	    <div class="fl w-100">
+	      <div class="tc pv3 lh-copy f3 fw6">
+		<span class="hot-pink f4 fw7 b">체크 리스트</span>
+	      </div>
+	    </div>
+	    <div class="fl w-100">
+	      <div class="tc pv3 lh-copy f3 fw6">
+		<span class="red f3 fw7 b">진동 해제!!</span><br>
+		<span class="yellow f3 fw7 b">스피커온!!</span><br>
+		<span class="lime f3 fw7 b">WIFI/LTE 연결!!</span><br>
+		<span class="blue f3 fw7 b">사운드 체크!! (버튼)</span>
+	      </div>
+	    </div>
+	    <div class="fl w-100">
+	      <div class="tc">
+		<div class="dib w-50 pb3">
+		  <div class="ui-clap ui-btn dib br-100 w3 h3 bg-blue ba bw2 b--yellow"></div>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="fl w-100 bg-lime pv2 go-launchpad">
+	    <div class="tc">
+	      <div class="dib w-30">
+		<svg class="fill-navy" width="100%" height="100%" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
+		  <path d="M1540 862q0-28-18-46l-91-90q-19-19-45-19t-45 19l-408 407-226-226q-19-19-45-19t-45 19l-91 90q-18 18-18 46 0 27 18 45l362 362q19 19 45 19 27 0 46-19l543-543q18-18 18-45zm252 162q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/>
+		</svg>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- launchpad page -->
+	<div class="ui-page fl w-100 bg-hot-pink" id="page-launchpad" style="display:none">
+	  <div class="fl w-100 center">
+	    <div class="fl w-100">
+	      <div class="fl w-50">
+		<div class="tc pv3">
+		  <div class="ui-btn-clap dib br-100 w4 h4 ba bw2 b--black "></div>
+		</div>
+	      </div>
+	      <div class="fl w-50">
+		<div class="tc pv3">
+		  <div class="ui-btn-brassball dib br-100 w4 h4 ba bw2 b--black"></div>
+		</div>
+	      </div>
+	      <div class="fl w-50">
+		<div class="tc pv3">
+		  <div class="ui-btn-animal dib br-100 w4 h4 ba bw2 b--black"></div>
+		</div>
+	      </div>
+	      <div class="fl w-50">
+		<div class="tc pv3">
+		  <div class="ui-btn-yesno dib br-100 w4 h4 ba bw2 b--black"></div>
+		</div>
+	      </div>
+	      <div class="fl w-50">
+		<div class="tc pv3">
+		  <div class="ui-btn-stop dib br-100 w4 h4 ba bw2 b--black"></div>
+		</div>
+	      </div>
+	      <div class="fl w-50">
+		<div class="tc pv3">
+		  <div class="ui-btn-cricket dib br-100 w4 h4 ba bw2 b--black"></div>
+		</div>
+	      </div>
+	      <div class="fl w-100 bg-lime pv2 go-piano">
+		<div class="tc">
+		  <div class="dib w-30">
+		    <svg class="fill-navy" width="100%" height="100%" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
+		      <path d="M1541 1024q0-27-18-45l-91-91-362-362q-18-18-45-18t-45 18l-91 91q-18 18-18 45t18 45l189 189h-502q-26 0-45 19t-19 45v128q0 26 19 45t45 19h502l-189 189q-19 19-19 45t19 45l91 91q18 18 45 18t45-18l362-362 91-91q18-18 18-45zm251 0q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/>
+		    </svg>
+		  </div>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- piano page -->
+	<div class="absolute top-0 left-0 pt2 pl2">
+	  <input type="checkbox" class="ui-tgl-pianoforall input-reset dib br4 w3 h3 ba bw3 b--white" value="0" style="display:none"/>
+	</div>
+	<div class="ui-page fl w-100 bg-hot-pink" id="page-piano" style="display:none">
+	  <div class="fl w-100 tc">
+	    <div class="dib w-60 pv3">
+	      <svg class="fill-navy" width="100%" height="100%" viewBox="0 0 120 230" xmlns="http://www.w3.org/2000/svg">
+		<!--  White keys   -->
+		<rect class="ui-btn-piano-white piano-highmi" style="stroke:black" x="0" y="0" width="120" height="23"/>
+		<rect class="ui-btn-piano-white piano-highre" style="stroke:black" x="0" y="23" width="120" height="23"/>
+		<rect class="ui-btn-piano-white piano-highdo" style="stroke:black" x="0" y="46" width="120" height="23"/>
+		<rect class="ui-btn-piano-white piano-si" style="stroke:black" x="0" y="69" width="120" height="23"/>
+		<rect class="ui-btn-piano-white piano-la" style="stroke:black" x="0" y="92" width="120" height="23"/>
+		<rect class="ui-btn-piano-white piano-sol" style="stroke:black" x="0" y="115" width="120" height="23"/>
+		<rect class="ui-btn-piano-white piano-fa" style="stroke:black" x="0" y="138" width="120" height="23"/>
+		<rect class="ui-btn-piano-white piano-mi" style="stroke:black" x="0" y="161" width="120" height="23"/>
+		<rect class="ui-btn-piano-white piano-re" style="stroke:black" x="0" y="184" width="120" height="23"/>
+		<rect class="ui-btn-piano-white piano-do" style="stroke:black" x="0" y="207" width="120" height="23"/>
+		<!--  Black keys (overlap with the white keys)  -->
+		<rect style="fill:black;stroke:black" x="0" y="14.33333" width="80" height="13"/>
+		<rect style="fill:black;stroke:black" x="0" y="41.66666" width="80" height="13"/>
+		<rect style="fill:black;stroke:black" x="0" y="82.25" width="80" height="13"/>
+		<rect style="fill:black;stroke:black" x="0" y="108.25" width="80" height="13"/>
+		<rect style="fill:black;stroke:black" x="0" y="134.75" width="80" height="13"/>
+		<rect style="fill:black;stroke:black" x="0" y="175.33333" width="80" height="13"/>
+		<rect style="fill:black;stroke:black" x="0" y="202.66666" width="80" height="13"/>
+	      </svg>
+	    </div>
+	  </div>
+	  <div class="fl w-50 bg-lime pv2 go-launchpad">
+	    <div class="tc">
+	      <div class="dib w-30">
+		<svg class="fill-navy" width="100%" height="100%" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
+		  <path d="M1536 1088v-128q0-26-19-45t-45-19h-502l189-189q19-19 19-45t-19-45l-91-91q-18-18-45-18t-45 18l-362 362-91 91q-18 18-18 45t18 45l91 91 362 362q18 18 45 18t45-18l91-91q18-18 18-45t-18-45l-189-189h502q26 0 45-19t19-45zm256-64q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/>
+		</svg>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="fl w-50 bg-lime pv2 go-birthday">
+	    <div class="tc">
+	      <div class="dib w-30">
+		<svg class="fill-navy" width="100%" height="100%" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
+		  <path d="M1541 1024q0-27-18-45l-91-91-362-362q-18-18-45-18t-45 18l-91 91q-18 18-18 45t18 45l189 189h-502q-26 0-45 19t-19 45v128q0 26 19 45t45 19h502l-189 189q-19 19-19 45t19 45l91 91q18 18 45 18t45-18l362-362 91-91q18-18 18-45zm251 0q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/>
+		</svg>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- birthday page -->
+	<div class="ui-page fl w-100 bg-hot-pink" id="page-birthday" style="display:none">
+	  <div class="fl w-100 center">
+	    <div class="fl w-100">
+	      <div class="tc pv3">
+		<div class="birthday-go ui-btn-birthday dib br-100 w5 h5 ba bw2 b--black "></div>
+	      </div>
+	      <div class="fl w-100 bg-lime pv2 go-piano">
+		<div class="tc">
+		  <div class="dib w-30">
+		    <svg class="fill-navy" width="100%" height="100%" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
+		      <path d="M1536 1088v-128q0-26-19-45t-45-19h-502l189-189q19-19 19-45t-19-45l-91-91q-18-18-45-18t-45 18l-362 362-91 91q-18 18-18 45t18 45l91 91 362 362q18 18 45 18t45-18l91-91q18-18 18-45t-18-45l-189-189h502q26 0 45-19t19-45zm256-64q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/>
+		    </svg>
+		  </div>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div><!-- full page end -->
+    </div>
+    
+  </body>
+</html>

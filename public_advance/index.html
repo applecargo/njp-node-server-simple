@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>%((space)package)&</title>
+    <!-- vendor libraries -->
+    <script type="text/javascript" src="./vendor/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="./vendor/js/Tone.min.js"></script>
+    <script type="text/javascript" src="./vendor/js/socket.io.js"></script>
+    <link rel="stylesheet" href="./vendor/css/tachyons.min.css"/>
+    <link rel="stylesheet" href="./vendor/css/colors.css">
+    <!-- dev libraries -->
+    <script type="text/javascript" src="./js/webscope.js"></script>
+    <script type="text/javascript" src="./js/ui.js"></script>
+    <script type="text/javascript" src="./js/mavg.js"></script>
+    <link rel="stylesheet" href="./css/loading-animation.css"/>
+    <!-- dev code -->
+    <script type="text/javascript" src="./js/motion.js"></script>
+    <script type="text/javascript" src="./js/instruments.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
+  </head>
+  <body class="bg-near-black min-h-100 h-auto">
+
+    <!-- top sticky overlay-ed flasher -->
+    <div class="flasher fixed top-0 left-0 vh-100 w-100 bg-white z-max" style="display:none"></div>
+
+    <!-- full page layout START -->
+    <div class="vh-100 w-100 absolute top-0 left-0 bg-near-black">
+      <div class="cf w-100 top-0">
+
+	<!-- full page layout block START -->
+	<!-- top sticky system status header -->
+	<div class="absolute top-0 right-0 pt2 pr2">
+	  <input type="checkbox" class="netstat input-reset dib br-100 w2 h2 ba bw2 b--near-black" value="0"/>
+	</div>
+
+	<!-- page - sound & (checklist) -->
+	<div class="ui-page fl w-100" id="page-checklist">
+	  <div class="fl w-100 center ph4">
+
+	    <!-- {layout block START} -->
+	    <div class="fl w-100">
+	      <div class="tc pv3 lh-copy f3 fw6">
+		<span class="white f4 fw7 b">MINIMALISTIC</span>
+	      </div>
+	    </div>
+	    <div class="fl w-100">
+	      <div class="tc pv3 lh-copy f3 fw6">
+		<span class="yellow f3 fw7 b">TURN ON, the SPEAKER!!</span><br>
+		<span class="lime f3 fw7 b">ENABLE WIFI/LTE!!</span><br>
+		<span class="blue f3 fw7 b">CHECK SOUND!! (below)</span>
+	      </div>
+	    </div>
+	    <div class="fl w-100">
+	      <div class="tc">
+		<div class="dib w-50 pb3">
+		  <div class="touch dib br-100 w3 h3 ba bw2 b--yellow"></div>
+		</div>
+	      </div>
+	    </div>
+	    <div class="fl w-50">
+	      <div class="tc pv3 lh-copy f3 fw6">
+		<span class="light-blue f3 fw7 b">!@#$%^&*</span><br>
+	      </div>
+	    </div>
+	    <div class="fl w-50">
+	      <div class="tc pv3 lh-copy f3 fw6">
+		<span class="prog-no lime f3 fw7 b">0</span><br>
+	      </div>
+	    </div>
+	    <!-- {layout block END} -->
+	    
+	  </div>
+	</div>
+	<!-- full page layout block END -->
+	
+      </div>
+    </div>
+    <!-- full page layout END -->
+    
+  </body>
+</html>
