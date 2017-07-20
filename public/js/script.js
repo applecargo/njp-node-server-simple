@@ -93,7 +93,7 @@ $( document ).ready(function() {
       $(this).removeClass('bg-yellow').addClass('bg-navy');
     }
   });
-  $('.ui-tgl-pianoforall').prop('checked', false).change();
+  $('.ui-tgl-pianoforall').prop('checked', true).change();
   
   ////paginations
   
@@ -135,6 +135,7 @@ $( document ).ready(function() {
   var stop;
   var singer;
   var brassball;
+  var marimba;
 
   function audioloader() {
     var url;
@@ -163,6 +164,27 @@ $( document ).ready(function() {
     //brassball
     url = "audio/brassball@8/" + ("0" + Math.floor(Math.random()*8+1)).slice(-2) + ".mp3";
     brassball = new Tone.Player({ "url" : url }).toMaster();
+
+    //marimba
+    marimba = new Tone.MultiPlayer(
+      [
+	"audio/marimba@15/01.wav",
+	"audio/marimba@15/02.wav",
+	"audio/marimba@15/03.wav",
+	"audio/marimba@15/04.wav",
+	"audio/marimba@15/05.wav",
+	"audio/marimba@15/06.wav",
+	"audio/marimba@15/07.wav",
+	"audio/marimba@15/08.wav",
+	"audio/marimba@15/09.wav",
+	"audio/marimba@15/10.wav",
+	"audio/marimba@15/11.wav",
+	"audio/marimba@15/12.wav",
+	"audio/marimba@15/13.wav",
+	"audio/marimba@15/14.wav",
+	"audio/marimba@15/15.wav"
+      ]
+    ).toMaster();
 
     //animal
     url = "audio/animal@6/" + ("0" + Math.floor(Math.random()*6+1)).slice(-2) + ".mp3";
@@ -223,7 +245,7 @@ $( document ).ready(function() {
   });
   
   //sing-note by me. or by all!
-  var sing_forall = false;
+  var sing_forall = true;
   $('.ui-tgl-pianoforall').click(function() {
     sing_forall = $(this).prop('checked');
   });
@@ -271,6 +293,13 @@ $( document ).ready(function() {
     cricket.start();
     flasher.flash();
   });
+  $('.ui-btn-marimba').click(function() {
+    console.log('marimba-go');
+    socket.emit('sound', 'marimba');
+    marimba.start(Math.floor(Math.random()*15));
+    flasher.flash();
+  });
+
   $('.ui-btn-stop').click(function() {
     console.log('stop-go');
     socket.emit('sound', 'stop');
@@ -351,6 +380,8 @@ $( document ).ready(function() {
     case 'animal': animal.start(); flasher.flash(); break;
     case 'yesno': yesno.start(); flasher.flash(); break;
     case 'cricket': cricket.start(); flasher.flash(); break;
+    case 'marimba': marimba.start(Math.floor(Math.random()*15)); flasher.flash(); break;
+
     case 'stop':
       stop.start();
       // & stop all sounds!
@@ -359,6 +390,7 @@ $( document ).ready(function() {
       animal.stop();
       yesno.stop();
       cricket.stop();
+      marimba.stopAll();
       // & stop sequence, too.
       bday_timers.forEach(function(item) { clearTimeout(item); });
       singer.stopAll();
