@@ -97,12 +97,12 @@ $( document ).ready(function() {
   
   ////paginations
   
-  var pages = {
+  var pages = { //IMPORTANT : the order should match with 'index.html'!!
     'page-welcome': 0,
     'page-loading': 1,
     'page-checklist': 2,
-    'page-launchpad': 3,
-    'page-piano': 4,
+    'page-piano': 3,
+    'page-launchpad': 4,
     'page-birthday': 5
   };
   var cur_page = 0;
