@@ -117,7 +117,7 @@ $( document ).ready(function() {
   }
   $('.go-checklist').click(function() { changePage(pages['page-checklist']); });
   $('.go-launchpad').click(function() { changePage(pages['page-launchpad']); });
-  $('.go-piano').click(function() { changePage(pages['page-piano']); });
+  $('.go-piano').click(function() { changePage(pages['page-piano']); clap.start(); }); //auto-enable iphone sound output.
   $('.go-birthday').click(function() { changePage(pages['page-birthday']); });
   var pagechanger = setTimeout(function() { $('#go-loading').click(); }, 5000);
   $('.go-loading').click(function() {
