@@ -37,12 +37,12 @@ $( document ).ready(function() {
   $('.ui-btn-animal').addClass('bg-green');
   
   $('.ui-btn-yesno').click(function() {
-    $(this).removeClass('bg-black').addClass('bg-yellow');
+    $(this).removeClass('bg-yellow').addClass('bg-black');
     setTimeout(function() {
-      $(this).removeClass('bg-yellow').addClass('bg-black');
+      $(this).removeClass('bg-black').addClass('bg-yellow');
     }.bind(this), 300);
   });
-  $('.ui-btn-yesno').addClass('bg-black');
+  $('.ui-btn-yesno').addClass('bg-yellow');
   
   $('.ui-btn-stop').click(function() {
     $(this).removeClass('bg-red').addClass('bg-yellow');
@@ -53,12 +53,12 @@ $( document ).ready(function() {
   $('.ui-btn-stop').addClass('bg-red');
   
   $('.ui-btn-cricket').click(function() {
-    $(this).removeClass('bg-navy').addClass('bg-yellow');
+    $(this).removeClass('bg-lime').addClass('bg-yellow');
     setTimeout(function() {
-      $(this).removeClass('bg-yellow').addClass('bg-navy');
+      $(this).removeClass('bg-yellow').addClass('bg-lime');
     }.bind(this), 300);
   });
-  $('.ui-btn-cricket').addClass('bg-navy');
+  $('.ui-btn-cricket').addClass('bg-lime');
   
   $('.ui-btn-birthday').click(function() {
     $(this).removeClass('bg-hot-pink').addClass('bg-white');
