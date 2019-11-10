@@ -36,7 +36,7 @@ httpServer.listen(80);
 var io = require('socket.io')(httpsWebServer, {'pingInterval': 1000, 'pingTimeout': 3000});
 
 io.on('connection', function(socket){
-  
+
   //msg. for everybody - oneshot sounds
   socket.on('sound', function(msg) {
     socket.broadcast.emit('sound', msg); // sending to all clients except sender
@@ -53,7 +53,7 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('instrument user disconnected');
   });
-  
+
 });
 
 //// osc.js/udp service

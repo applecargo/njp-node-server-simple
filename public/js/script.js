@@ -19,7 +19,7 @@ $( document ).ready(function() {
     }.bind(this), 300);
   });
   $('.ui-btn-clap').addClass('bg-blue');
-  
+
   $('.ui-btn-brassball').click(function() {
     $(this).removeClass('bg-hot-pink').addClass('bg-yellow');
     setTimeout(function() {
@@ -27,7 +27,7 @@ $( document ).ready(function() {
     }.bind(this), 300);
   });
   $('.ui-btn-brassball').addClass('bg-hot-pink');
-  
+
   $('.ui-btn-animal').click(function() {
     $(this).removeClass('bg-green').addClass('bg-yellow');
     setTimeout(function() {
@@ -35,7 +35,7 @@ $( document ).ready(function() {
     }.bind(this), 300);
   });
   $('.ui-btn-animal').addClass('bg-green');
-  
+
   $('.ui-btn-yesno').click(function() {
     $(this).removeClass('bg-yellow').addClass('bg-black');
     setTimeout(function() {
@@ -43,7 +43,7 @@ $( document ).ready(function() {
     }.bind(this), 300);
   });
   $('.ui-btn-yesno').addClass('bg-yellow');
-  
+
   $('.ui-btn-stop').click(function() {
     $(this).removeClass('bg-red').addClass('bg-yellow');
     setTimeout(function() {
@@ -51,7 +51,7 @@ $( document ).ready(function() {
     }.bind(this), 300);
   });
   $('.ui-btn-stop').addClass('bg-red');
-  
+
   $('.ui-btn-cricket').click(function() {
     $(this).removeClass('bg-lime').addClass('bg-yellow');
     setTimeout(function() {
@@ -59,7 +59,7 @@ $( document ).ready(function() {
     }.bind(this), 300);
   });
   $('.ui-btn-cricket').addClass('bg-lime');
-  
+
   $('.ui-btn-birthday').click(function() {
     $(this).removeClass('bg-hot-pink').addClass('bg-white');
     setTimeout(function() {
@@ -67,7 +67,7 @@ $( document ).ready(function() {
     }.bind(this), 300);
   });
   $('.ui-btn-birthday').addClass('bg-hot-pink');
-  
+
   $('.ui-btn-piano-white').click(function() {
     $(this).removeClass('fill-white').addClass('fill-yellow');
     setTimeout(function() {
@@ -94,9 +94,9 @@ $( document ).ready(function() {
     }
   });
   $('.ui-tgl-pianoforall').prop('checked', true).change();
-  
+
   ////paginations
-  
+
   var pages = { //IMPORTANT : the order should match with 'index.html'!!
     'page-welcome': 0,
     'page-loading': 1,
@@ -144,23 +144,23 @@ $( document ).ready(function() {
     url = "audio/voices/voice@10/" + Math.floor(Math.random()*10+1) + "/";
     singer = new Tone.MultiPlayer(
       [
-	url.concat("do.mp3"),
-	url.concat("re.mp3"),
-	url.concat("mi.mp3"),
-	url.concat("fa.mp3"),
-	url.concat("sol.mp3"),
-	url.concat("la.mp3"),
-	url.concat("si.mp3"),
-	url.concat("highdo.mp3"),
-	url.concat("highre.mp3"),
-	url.concat("highmi.mp3")
+        url.concat("do.mp3"),
+        url.concat("re.mp3"),
+        url.concat("mi.mp3"),
+        url.concat("fa.mp3"),
+        url.concat("sol.mp3"),
+        url.concat("la.mp3"),
+        url.concat("si.mp3"),
+        url.concat("highdo.mp3"),
+        url.concat("highre.mp3"),
+        url.concat("highmi.mp3")
       ]
     ).toMaster();
 
     //clap
     url = "audio/clap@2/" + ("0" + Math.floor(Math.random()*2+1)).slice(-2) + ".mp3";
     clap = new Tone.Player({ "url" : url }).toMaster();
-    
+
     //brassball
     url = "audio/brassball@8/" + ("0" + Math.floor(Math.random()*8+1)).slice(-2) + ".mp3";
     brassball = new Tone.Player({ "url" : url }).toMaster();
@@ -168,21 +168,21 @@ $( document ).ready(function() {
     //marimba
     marimba = new Tone.MultiPlayer(
       [
-	"audio/marimba@15/01.wav",
-	"audio/marimba@15/02.wav",
-	"audio/marimba@15/03.wav",
-	"audio/marimba@15/04.wav",
-	"audio/marimba@15/05.wav",
-	"audio/marimba@15/06.wav",
-	"audio/marimba@15/07.wav",
-	"audio/marimba@15/08.wav",
-	"audio/marimba@15/09.wav",
-	"audio/marimba@15/10.wav",
-	"audio/marimba@15/11.wav",
-	"audio/marimba@15/12.wav",
-	"audio/marimba@15/13.wav",
-	"audio/marimba@15/14.wav",
-	"audio/marimba@15/15.wav"
+        "audio/marimba@15/01.wav",
+        "audio/marimba@15/02.wav",
+        "audio/marimba@15/03.wav",
+        "audio/marimba@15/04.wav",
+        "audio/marimba@15/05.wav",
+        "audio/marimba@15/06.wav",
+        "audio/marimba@15/07.wav",
+        "audio/marimba@15/08.wav",
+        "audio/marimba@15/09.wav",
+        "audio/marimba@15/10.wav",
+        "audio/marimba@15/11.wav",
+        "audio/marimba@15/12.wav",
+        "audio/marimba@15/13.wav",
+        "audio/marimba@15/14.wav",
+        "audio/marimba@15/15.wav"
       ]
     ).toMaster();
 
@@ -211,7 +211,7 @@ $( document ).ready(function() {
     //-->resolve scoping issues.. : https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/
 
     ////sensor triggered effects
-    
+
     // window.addEventListener("deviceorientation", function(event) {
     //     clap.playbackRate = (event.alpha-180)/180 + 1; //orientation
     // }, false);
@@ -225,9 +225,9 @@ $( document ).ready(function() {
   }
 
   ////----------------------------------------------------------------////
-  
+
   ////connect to message server
-  
+
   var socket = io('https://choir.run');
   socket.on('connect', function() {
     $('#netstat').prop('checked', true).change(); //don't forget to trigger evt, 'change'.
@@ -237,13 +237,13 @@ $( document ).ready(function() {
   });
 
   ////local sounds (ui-triggered)
-  
+
   //sndcheck audio
   $('.ui-clap').click(function() {
     clap.start();
     flasher.flash();
   });
-  
+
   //sing-note by me. or by all!
   var sing_forall = true;
   $('.ui-tgl-pianoforall').click(function() {
@@ -315,7 +315,7 @@ $( document ).ready(function() {
     singer.stopAll();
     flasher.flash();
   });
-  
+
   //birthday-go (network)
   //1 1 2 2 2 4 1 1 2 2 2 4 1 1 2 2 2 2 2 1 1 2 2 2 4 //rhythm
   //0 0 1 0 3 2 0 0 1 0 4 3 0 0 7 5 3 2 1 6 6 5 3 4 3 //melody
@@ -350,9 +350,9 @@ $( document ).ready(function() {
     //done! clear array.
     bday_timers.push(setTimeout(function() { bday_timers = []; }, 25000));
   });
-  
+
   ////sound swarm RX (message-triggered)
-  
+
   //sing-note from network
   socket.on('sing-note', function(note) {
     console.log(note);
@@ -412,9 +412,9 @@ $( document ).ready(function() {
 //     var sum = 0;
 
 //     for (var i = 0; i < 25; i++) {
-// 	// console.log(bd_r[i]*bd_tscale);
-// 	console.log(sum);
-// 	sum = sum + bd_r[i]*bd_tscale;
+//      // console.log(bd_r[i]*bd_tscale);
+//      console.log(sum);
+//      sum = sum + bd_r[i]*bd_tscale;
 //     }
 // }
 
