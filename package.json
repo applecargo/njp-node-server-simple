@@ -24,7 +24,7 @@
     "http-proxy": "^1.18.1",
     "https": "^1.0.0",
     "osc": "^2.2.0",
-    "socket.io": "^2.0.3",
+    "socket.io": "^2.4.0",
     "socket.io-stream": "^0.9.1",
     "sqlite3": "^3.1.8",
     "wav": "^1.0.1"
